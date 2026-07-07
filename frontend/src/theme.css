@@ -1,0 +1,134 @@
+/* ========================================
+ * 云图库 主题变量体系
+ * 暗色优先，三档切换：暗色 | 亮色 | 跟随系统
+ * ======================================== */
+
+/* ---------- 暗色主题（默认） ---------- */
+:root,
+[data-theme='dark'] {
+  /* 底板 */
+  --yu-bg: #1A1A1C;
+  --yu-bg-card: #252528;
+  --yu-bg-hover: #2F2F33;
+  --yu-bg-elevated: #303033;
+
+  /* 边框 & 分割线 */
+  --yu-border: #38383A;
+  --yu-border-light: #2E2E31;
+
+  /* 文字 */
+  --yu-text-primary: #F5F5F7;
+  --yu-text-secondary: #98989D;
+  --yu-text-tertiary: #6D6D72;
+
+  /* 强调色 */
+  --yu-primary: #3B82F6;
+  --yu-primary-hover: #2563EB;
+  --yu-primary-active: #1D4ED8;
+  --yu-primary-bg: rgba(59, 130, 246, 0.12);
+
+  /* 辅强调色 */
+  --yu-accent: #F59E0B;
+  --yu-accent-hover: #D97706;
+  --yu-accent-bg: rgba(245, 158, 11, 0.12);
+
+  /* 语义色 */
+  --yu-success: #10B981;
+  --yu-success-bg: rgba(16, 185, 129, 0.12);
+  --yu-warning: #F59E0B;
+  --yu-warning-bg: rgba(245, 158, 11, 0.12);
+  --yu-error: #EF4444;
+  --yu-error-bg: rgba(239, 68, 68, 0.12);
+  --yu-info: #6366F1;
+  --yu-info-bg: rgba(99, 102, 241, 0.12);
+
+  /* 玻璃拟态 */
+  --yu-glass-bg: rgba(37, 37, 40, 0.7);
+  --yu-glass-border: rgba(255, 255, 255, 0.08);
+  --yu-glass-blur: 12px;
+
+  /* 阴影 */
+  --yu-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --yu-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --yu-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --yu-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.25);
+
+  /* 圆角 */
+  --yu-radius-sm: 6px;
+  --yu-radius-md: 10px;
+  --yu-radius-lg: 16px;
+  --yu-radius-xl: 24px;
+
+  /* 过渡 */
+  --yu-transition-fast: 0.15s ease;
+  --yu-transition-normal: 0.25s ease;
+  --yu-transition-slow: 0.4s ease;
+
+  /* 页面特定 */
+  --yu-header-height: 56px;
+  --yu-sider-width: 200px;
+  --yu-content-max-width: 1400px;
+
+  /* 图片占位 */
+  --yu-placeholder-1: #2F2F33;
+  --yu-placeholder-2: #38383A;
+}
+
+/* ---------- 亮色主题 ---------- */
+[data-theme='light'] {
+  --yu-bg: #F5F5F7;
+  --yu-bg-card: #FFFFFF;
+  --yu-bg-hover: #EDEDEF;
+  --yu-bg-elevated: #FFFFFF;
+
+  --yu-border: #E5E5EA;
+  --yu-border-light: #F0F0F2;
+
+  --yu-text-primary: #1D1D1F;
+  --yu-text-secondary: #86868B;
+  --yu-text-tertiary: #AEAEB2;
+
+  --yu-primary: #3B82F6;
+  --yu-primary-hover: #2563EB;
+  --yu-primary-active: #1D4ED8;
+  --yu-primary-bg: rgba(59, 130, 246, 0.08);
+
+  --yu-accent: #F59E0B;
+  --yu-accent-hover: #D97706;
+  --yu-accent-bg: rgba(245, 158, 11, 0.08);
+
+  --yu-success: #10B981;
+  --yu-success-bg: rgba(16, 185, 129, 0.08);
+  --yu-warning: #F59E0B;
+  --yu-warning-bg: rgba(245, 158, 11, 0.08);
+  --yu-error: #EF4444;
+  --yu-error-bg: rgba(239, 68, 68, 0.08);
+  --yu-info: #6366F1;
+  --yu-info-bg: rgba(99, 102, 241, 0.08);
+
+  --yu-glass-bg: rgba(255, 255, 255, 0.7);
+  --yu-glass-border: rgba(0, 0, 0, 0.06);
+  --yu-glass-blur: 12px;
+
+  --yu-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --yu-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --yu-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --yu-shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  --yu-placeholder-1: #E5E5EA;
+  --yu-placeholder-2: #F0F0F2;
+}
+
+/* ========================================
+ * backdrop-filter 降级
+ * 不支持 blur 的浏览器使用更不透明的背景
+ * ======================================== */
+@supports not (backdrop-filter: blur(1px)) {
+  :root,
+  [data-theme='dark'] {
+    --yu-glass-bg: rgba(37, 37, 40, 0.92);
+  }
+  [data-theme='light'] {
+    --yu-glass-bg: rgba(255, 255, 255, 0.92);
+  }
+}

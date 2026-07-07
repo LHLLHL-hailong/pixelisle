@@ -1,0 +1,47 @@
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# Java
+target/
+*.class
+*.jar
+*.war
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Maven
+.mvn/
+
+# Test
+*.tmp
+*.temp
+
+# Playwright / Test artifacts
+.playwright-cli/
+test-output/
+test_bytes.txt
+.claude/

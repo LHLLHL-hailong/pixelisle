@@ -1,0 +1,106 @@
+#网络配置
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        max-age: ${lhl.max-age}
+
+
+spring:
+  application:
+    name: pixelisle-backend
+  redis:
+    host: localhost
+    port: 6379
+  # 空间图片分表
+  shardingsphere:
+    datasource:
+      names: pixel_isle
+      pixel_isle:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/pixel_isle
+        username: root
+        password: 123
+    rules:
+      sharding:
+        tables:
+          picture:
+            actual-data-nodes: pixel_isle.picture  # 动态分表
+            table-strategy:
+              standard:
+                sharding-column: spaceId
+                sharding-algorithm-name: picture_sharding_algorithm  # 使用自定义分片算法
+        sharding-algorithms:
+          picture_sharding_algorithm:
+            type: CLASS_BASED
+            props:
+              strategy: standard
+              algorithmClassName: cn.lhllhl.pixelisle.management.sharding.PictureShardingAlgorithm
+    props:
+      sql-show: true
+
+
+  #  redis:
+#    password: 111111
+#    lettuce:
+#      cluster:
+#        refresh:
+#          adaptive: true
+#          period: 2000
+#    cluster:
+#      max-redirects: 3
+#      nodes: 152.136.142.229:4350,152.136.142.229:4351,152.136.142.229:4352,152.136.142.229:4353,152.136.142.229:4354,152.136.142.229:4355
+# 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/pixel_isle?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&useInformationSchema=true
+    username: root
+    password: 123
+  profiles:
+    active: local
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+#session的配置
+  session:
+    store-type: redis
+    timeout: ${lhl.max-age}
+  main:
+    allow-circular-references: true
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+
+
+#mybatis-plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDeleted
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+    enable-sql-runner: true
+
+#接口文档配置
+
+knife4j:
+  enable: true
+  openapi:
+    title: 接口文档
+    version: v1.0
+    group:
+      test1:
+        api-rule: package
+        api-rule-resources:
+          - cn.lhllhl.pixelisle.controller
+
+lhl:
+  max-age: 259200
